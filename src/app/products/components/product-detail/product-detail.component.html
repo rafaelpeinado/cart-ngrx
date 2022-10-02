@@ -1,0 +1,18 @@
+<div class="container pt-5">
+  <div class="row wrapper m-auto" *ngIf="product$ | async as product">
+    <div class="col-12 col-md-6 product-info">
+      <h1>{{ product.model }}</h1>
+      <p>{{ product.description }}</p>
+      <div class="product-price">{{ product.price | currency }}</div>
+      <form class="row">
+        <div class="col-3 p-0">
+          <input class="form-control quantity-input" type="number" pattern="^[0-9]+$" inputmode="numeric" min="1" value="1"/>
+        </div>
+        <div class="col-9 p-0">
+          <button class="add-to-cart-button">Adicionar no carrinho</button>
+        </div>
+      </form>
+    </div>
+    <img src="{{ product.urlImage }}" class="col-12 col-md-6 image" />
+  </div>
+</div>

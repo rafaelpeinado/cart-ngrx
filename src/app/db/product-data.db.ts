@@ -1,5 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Product } from '../models/product.model';
+import { Product } from '../products/models/product.model';
 
 export class ProductData implements InMemoryDbService {
 
@@ -10,7 +10,7 @@ export class ProductData implements InMemoryDbService {
         model: 'Tênis NMD_R1 V3',
         brand: 'Adidas',
         color: 'Cinza',
-        description: '',
+        description: 'Brincando com a transparência, este tênis adidas NMD_R1 V3 aprimora a expressão emblemática de tecnologia tática da linha NMD. O amortecimento BOOST é garantia de suporte a cada passo dado. E isso é ótimo para quem não consegue ficar muito tempo parado. Ele também é parcialmente encapsulado em TPU, combinando-se com plugues de TPU no calcanhar para indicar que realmente é um NMD. O cabedal cortado a laser e os detalhes bordados reinventam o estilo icônico.',
         price: 1199.99,
         quantity: 5,
         size: '42',
@@ -21,7 +21,7 @@ export class ProductData implements InMemoryDbService {
         model: 'Tênis Sean Wotherspoon X Hot Wheels Superturf',
         brand: 'Adidas',
         color: 'Branco',
-        description: '',
+        description: 'Sean Wotherspoon e Hot Wheels. A combinação perfeita. Reunindo três marcas icônicas na evolução de um modelo muito cobiçado, este tênis adidas mistura a cultura dos anos 90 com uma estética de aventura e o ponto de vista visionário do designer. Tudo isso fica claro na estampa chamativa, nos apliques aderentes permutáveis e nas sobreposições que mudam de cor ao sol.',
         price: 999.99,
         quantity: 10,
         size: '42',

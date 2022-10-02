@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { Product } from '../models/product.model';
 
 
 @Injectable({
@@ -14,8 +15,16 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
 
-  getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(this.productsUrl)
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.productsUrl)
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
+        catchError(this.handleError)
+      );
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.productsUrl}/${id}`)
       .pipe(
         tap(data => console.log(JSON.stringify(data))),
         catchError(this.handleError)

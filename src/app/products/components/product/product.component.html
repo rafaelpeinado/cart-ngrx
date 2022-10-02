@@ -1,0 +1,18 @@
+<div class="container pt-5">
+  <div class="row wrapper m-auto" *ngIf="products$ | async as products">
+    <div
+      class="col-12 col-sm-6 col-md-4 col-xl-3 p-0 mt-3"
+      *ngFor="let product of products"
+    >
+      <div class="card product">
+        <img src="{{ product.urlImage }}" class="card-img-top" alt="..." />
+        <div class="card-body pb-0">
+          <h5 class="card-title model-title">{{ product.model }}</h5>
+          <div routerLink="/detalhes/{{ product.id }}" class="price m-auto">
+            {{ product.price | currency }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

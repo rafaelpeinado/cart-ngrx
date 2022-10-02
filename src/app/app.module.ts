@@ -4,18 +4,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
-import { ProductData } from './products/product-data.db';
+import { ProductData } from './db/product-data.db';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ProductsModule } from './products/products.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(ProductData)
+    HttpClientInMemoryWebApiModule.forRoot(ProductData),
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [ ProductsModule ]
 })
 export class AppModule { }
