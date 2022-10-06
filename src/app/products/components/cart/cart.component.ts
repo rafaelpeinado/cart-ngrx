@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
+import * as FontAwesome from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-cart',
@@ -11,6 +12,9 @@ export class CartComponent implements OnInit {
 
   public products: Product[] = [];
   public quantity: number = 1;
+
+  /* icons */
+  public faTrash = FontAwesome.faTrash;
 
   constructor(
     private productService: ProductService

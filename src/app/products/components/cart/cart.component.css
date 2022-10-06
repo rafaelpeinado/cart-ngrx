@@ -143,6 +143,35 @@
   font-weight: 700;
 }
 
+.items-remove {
+  position: relative;
+  display: inline-block;
+  background-color: #f1f1f1;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.items-remove:hover {
+  background-color: #a5c926;
+}
+
+.items-remove:hover fa-icon {
+  color: #ffffff;
+}
+
+.items-remove fa-icon {
+  position: absolute;
+  top: 2px;
+  left: 7px;
+  font-size: 18px;
+  color: #b1b1b1;
+}
+
 @media (min-width: 576px) {}
 
 @media (min-width: 768px) {

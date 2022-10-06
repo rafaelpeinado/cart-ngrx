@@ -32,7 +32,9 @@
       </div>
       <div class="col-9 pt-3 pb-3 col-xl-2 centralized">
         <span class="title-items">Total </span>{{ product.price | currency }}</div>
-      <div class="col-3 pt-3 pb-3 col-xl-1 text-end text-xl-center centralized"></div>
+      <div class="col-3 pt-3 pb-3 col-xl-1 text-end text-xl-center centralized">
+        <div class="items-remove"><fa-icon [icon]="faTrash"></fa-icon></div>
+      </div>
     </div>
     <div class="row pt-5 p-3">
       <div class="col text-center text-md-end">

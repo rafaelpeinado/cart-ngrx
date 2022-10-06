@@ -9,6 +9,7 @@ import { ProductData } from './db/product-data.db';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ProductsModule } from './products/products.module';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(ProductData),
     AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

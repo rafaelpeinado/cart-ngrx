@@ -5,6 +5,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { CartComponent } from './components/cart/cart.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { CartComponent } from './components/cart/cart.component';
   imports: [
     CommonModule,
     ProductsRoutingModule,
+    FontAwesomeModule
   ]
 })
 export class ProductsModule { }
