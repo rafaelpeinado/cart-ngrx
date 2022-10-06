@@ -1,0 +1,58 @@
+<div class="wrapper m-auto">
+  <div class="container max-width-container">
+    <div class="row">
+      <div class="col-12 col-xl-5 title-product">TODOS PRODUTOS</div>
+      <div class="col-2 list-header">PREÇO</div>
+      <div class="col-2 list-header">QUANTIDADE</div>
+      <div class="col-2 list-header">TOTAL</div>
+      <div class="col-1 list-header"></div>
+    </div>
+    <div class="row mb-2 products-list" *ngFor="let product of products">
+      <div class="col-12 pt-3 pb-3 col-xl-5 centralized p-0">
+        <div class="d-flex details" routerLink="../detalhes/{{ product.id }}">
+          <img class="col-12 col-md-6 image image-cart" src="{{ product.urlImage }}" />
+          <div class="centralized w-100">{{ product.model }}</div>
+        </div>
+      </div>
+      <div class="col-6 pt-3 pb-3 col-xl-2 centralized">
+        <span class="title-items">Preço </span>
+        <br>
+        {{ product.price | currency }}
+      </div>
+      <div class="col-6 pt-3 pb-3 col-xl-2 centralized">
+        <div class="input-group quantity ml-auto ml-xl-0">
+          <div class="input-group-prepend">
+            <button type="button" class="btn btn-controls-cart left" [disabled]="quantity === 1" (click)="changeQuantityCart(0, -1)"> - </button>
+          </div>
+          <input type="number" class="form-control input-qtde" readonly [value]="quantity" />
+          <div class="input-group-append">
+            <button type="button" class="btn btn-controls-cart right" (click)="changeQuantityCart(0, 1)"> + </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-9 pt-3 pb-3 col-xl-2 centralized">
+        <span class="title-items">Total </span>{{ product.price | currency }}</div>
+      <div class="col-3 pt-3 pb-3 col-xl-1 text-end text-xl-center centralized">
+        <div class="items-remove"><fa-icon [icon]="faTrash"></fa-icon></div>
+      </div>
+    </div>
+    <div class="row pt-5 p-3">
+      <div class="col text-center text-md-end">
+        <h3 class="mt-3 mb-4 pr-2 pl-2 total-price text-left"> Valor Total: <span class="float-right">R$ 1200,00</span>
+        </h3>
+      </div>
+    </div>
+    <div class="row w-100 m-0 actions-cart">
+      <div class="col-12 col-md-6 col-lg-8 col-xl-9 p-3">
+        <div class="items-actions-cart text-xl-left text-center">
+          <a class="btn btn-continuar-comprando w-100" routerLink="/search">Continuar Comprando</a>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-3 text-xl-end text-center">
+        <div class="items-actions-cart text-xl-end text-center">
+          <button routerLink="/finalizar-compra" class="btn add-to-cart-button w-100"> Finalizar Compra </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
