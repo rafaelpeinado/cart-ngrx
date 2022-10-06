@@ -8,7 +8,13 @@
   border-radius: 16px;
   padding: 24px 24px 32px;
   border: none;
+  cursor: pointer;
+  transition: transform 300ms ease, box-shadow 300ms ease, -webkit-transform 300ms ease;
+}
+
+.product:hover {
   box-shadow: 0 8px 20px -4px rgb(0 0 0 / 15%);
+  transform: scale(1.05) translate(0px, -2px);
 }
 
 .model-title {
@@ -41,7 +47,11 @@
 
 @media (min-width: 768px) {}
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+  .product {
+    width: calc(100% - 20px);
+  }
+}
 
 @media (min-width: 1200px) {}
 
