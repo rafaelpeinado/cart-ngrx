@@ -11,6 +11,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { StoreModule } from '@ngrx/store';
+import { CartModule } from './cart/cart.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,10 +29,20 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(ProductData),
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      name: 'APM Demo App DevTools',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [ ProductsModule ]
+  exports: [
+    ProductsModule,
+    CartModule
+  ]
 })
 export class AppModule { }

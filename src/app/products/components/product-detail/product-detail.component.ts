@@ -1,36 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { ItemCart } from 'src/app/cart/models/item-cart.model';
+import { getItems } from 'src/app/cart/state';
+import { CartPageActions } from 'src/app/cart/state/actions';
 import { Product } from '../../models/product.model';
-import { ProductService } from '../../services/product.service';
+import { getCurrentProduct, State } from '../../state';
+import { ProductPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit {
-  public product: Product;
+export class ProductDetailComponent implements OnInit, OnDestroy {
+  public product$: Observable<Product>;
 
   constructor(
-    private productService: ProductService,
-    private activatedRoute: ActivatedRoute,
-    private spinner: NgxSpinnerService
+    private store: Store<State>,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.spinner.show();
+    this.product$ = this.store.select(getCurrentProduct);
     this.activatedRoute.params
-      .subscribe((response) => {
+      .subscribe(response => {
         if (response && response.id) {
-          this.productService.getProductById(response.id)
-            .subscribe((product) => {
-              this.product = product;
-              this.spinner.hide();
-            }, () => this.spinner.hide());
+          const currentProductId: number = +response.id;
+          this.store.dispatch(ProductPageActions.setCurrentProductId({ currentProductId }));
         }
-      }, () => this.spinner.hide());
+      });
   }
 
+  ngOnDestroy(): void {
+    this.store.dispatch(ProductPageActions.clearCurrentProduct());
+  }
+
+  public addToCart(product: Product): void {
+    const itemCart: ItemCart = {
+      product,
+      quantity: 1
+    };
+    this.store.dispatch(CartPageActions.addItemCart({ itemCart }));
+  }
 }

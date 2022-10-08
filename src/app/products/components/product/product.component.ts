@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Product } from '../../models/product.model';
-import { ProductService } from '../../services/product.service';
+import { getProducts, State } from '../../state';
+import { ProductPageActions } from '../../state/actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -11,20 +12,17 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  public products: Product[];
+  public products$: Observable<Product[]>;
 
   constructor(
-    private productService: ProductService,
-    private spinner: NgxSpinnerService
+    private store: Store<State>,
   ) { }
 
   ngOnInit(): void {
-    this.spinner.show();
-    this.productService.getProducts()
-      .subscribe((products) => {
-        this.products = products;
-        this.spinner.hide();
-      }, () => this.spinner.hide());
+    this.products$ = this.store.select(getProducts);
   }
 
+  public setCurrentProductId(currentProductId: number) {
+    this.store.dispatch(ProductPageActions.setCurrentProductId({ currentProductId }));
+  }
 }
