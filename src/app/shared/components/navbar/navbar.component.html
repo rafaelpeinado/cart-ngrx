@@ -43,7 +43,7 @@
         <span class="nav-item cart-click">
           <a class="nav-link d-flex" routerLink="/carrinho">
             <fa-icon [icon]="faShoppingCart"></fa-icon>
-            <div class="item-count">1</div>
+            <div class="item-count" *ngIf="quantityItems$ | async as quantityItems">{{ quantityItems }}</div>
           </a>
         </span>
       </div>

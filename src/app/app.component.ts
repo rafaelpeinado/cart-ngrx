@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { CartPageActions } from './cart/state/actions';
 import { ProductPageActions } from './products/state/actions';
 import { State } from './state/app.state';
 
@@ -16,5 +17,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(ProductPageActions.loadProducts());
+    this.store.dispatch(CartPageActions.loadItemsCart());
   }
 }

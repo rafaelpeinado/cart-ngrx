@@ -9,6 +9,8 @@ import { ItemCart } from '../models/item-cart.model';
 })
 export class CartService {
 
+  private keyCart: string = 'cart';
+
   constructor() { }
 
   public getCartLocalStorage(): Observable<ItemCart[]> {
@@ -20,17 +22,33 @@ export class CartService {
     return throwError(Errors.EMPTY_LOCAL_STORAGE as string);
   }
 
-  public addItemToCart(itemCart: ItemCart): Observable<ItemCart[]> {
+  public increaseOrDecreaseItemToCart(itemCart: ItemCart): Observable<ItemCart[]> {
     return this.getCartLocalStorage()
       .pipe(
         map((itemsCart) => {
           itemsCart.find(item => item.product.id === itemCart.product.id) ?
-          itemsCart.map(item => item.product.id === itemCart.product.id ? item.quantity += itemCart.quantity : item) :
-          itemsCart = [ ...itemsCart, itemCart ];
-          localStorage.setItem('cart', JSON.stringify(itemsCart));
+            itemsCart.map(item => item.product.id === itemCart.product.id ? item.quantity += itemCart.quantity : item) :
+            itemsCart = [...itemsCart, itemCart];
+          this.localStorageSetItem(itemsCart);
           return itemsCart;
         }),
         catchError((error) => of(error))
       );
+  }
+
+  public removeItemFromCart(productId: number): Observable<ItemCart[]> {
+    return this.getCartLocalStorage()
+      .pipe(
+        map((itemsCart) => {
+          itemsCart = itemsCart.filter(i => i.product.id !== productId);
+          this.localStorageSetItem(itemsCart);
+          return itemsCart;
+        }),
+        catchError((error) => of(error))
+      );
+  }
+
+  private localStorageSetItem(itemsCart: ItemCart[]): void {
+    localStorage.setItem(this.keyCart, JSON.stringify(itemsCart));
   }
 }

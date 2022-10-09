@@ -24,12 +24,22 @@ export class CartEffects {
     );
   });
 
-  addItemCart$ = createEffect(() => {
+  changeQuantityItemCart$ = createEffect(() => {
     return this.action$.pipe(
-      ofType(CartPageActions.addItemCart),
-      mergeMap((response) => this.cartService.addItemToCart(response.itemCart).pipe(
-        map((itemsCart) => CartApiActions.addItemCartSuccess({ itemsCart })),
-        catchError(error => of(CartApiActions.addItemCartFailure({ error })))
+      ofType(CartPageActions.addItemCart, CartPageActions.increaseItemCart, CartPageActions.decreaseItemCart),
+      mergeMap((response) => this.cartService.increaseOrDecreaseItemToCart(response.itemCart).pipe(
+        map((itemsCart) => CartApiActions.changeQuantityItemCartSuccess({ itemsCart })),
+        catchError((error) => of(CartApiActions.changeQuantityItemCartFailure({ error })))
+      ))
+    );
+  });
+
+  removeItemCart$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(CartPageActions.removeItemCart),
+      mergeMap((response) => this.cartService.removeItemFromCart(response.productId).pipe(
+        map((itemsCart) => CartApiActions.removeItemCartSuccess({ itemsCart })),
+        catchError((error) => of(CartApiActions.removeItemCartFailure({ error })))
       ))
     );
   });

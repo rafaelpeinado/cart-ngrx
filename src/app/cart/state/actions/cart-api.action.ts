@@ -11,12 +11,22 @@ export const loadItemsCartFailure = createAction(
   props<{ error: string }>()
 );
 
-export const addItemCartSuccess = createAction(
-  '[Cart API] Add Item Cart Success',
+export const changeQuantityItemCartSuccess = createAction(
+  '[Cart API] Change Quantity Item Cart Success',
   props<{ itemsCart: ItemCart[] }>()
 );
 
-export const addItemCartFailure = createAction(
-  '[Cart API] Add Item Cart Fail',
+export const changeQuantityItemCartFailure = createAction(
+  '[Cart API] Change Quantity Cart Fail',
+  props<{ error: string }>()
+);
+
+export const removeItemCartSuccess = createAction(
+  '[Cart API] Remove Item Cart Success',
+  props<{ itemsCart: ItemCart[] }>()
+);
+
+export const removeItemCartFailure = createAction(
+  '[Cart API] Remove Item Cart Fail',
   props<{ error: string }>()
 );

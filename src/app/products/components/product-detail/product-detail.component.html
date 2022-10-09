@@ -5,11 +5,14 @@
       <p>{{ product.description }}</p>
       <div class="product-price">{{ product.price | currency }}</div>
       <div class="row">
-        <div class="col-3 p-0">
-          <input class="form-control quantity-input" type="number" pattern="^[0-9]+$" inputmode="numeric" min="1" value="1"/>
+        <div class="col-12 mb-2">
+          <small>{{ product.quantity }} {{ product.quantity > 1 ? 'itens' : product.quantity === 1 ? 'item' : 'Nenhum item' }} em estoque</small>
         </div>
-        <div class="col-9 p-0">
-          <button class="add-to-cart-button" (click)="addToCart(product)">Adicionar no carrinho</button>
+        <!-- <div class="col-3 p-0">
+          <input class="form-control quantity-input" type="number" pattern="^[0-9]+$" inputmode="numeric" min="1" value="1"/>
+        </div> -->
+        <div class="col-12 p-0" *ngIf="quantityCurrentProduct$ | async as quantityCurrentProduct">
+          <button class="add-to-cart-button" type="button" [disabled]="quantityCurrentProduct.quantity === product.quantity" (click)="addToCart(product)">Adicionar no carrinho</button>
         </div>
       </div>
     </div>

@@ -21,7 +21,5 @@ export const getCurrentProductId = createSelector(
 export const getCurrentProduct = createSelector(
   getProductFeatureState,
   getCurrentProductId,
-  (state, currentProductId) => {
-    return currentProductId ? state.products.find(p => p.id === currentProductId) : null;
-  }
+  (state, currentProductId) => currentProductId ? state.products.find(p => p.id === currentProductId) : null
 );

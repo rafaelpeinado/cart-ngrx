@@ -14,14 +14,14 @@ const initialState: CartState = {
 
 export const cartReducer = createReducer<CartState>(
   initialState,
-  on(CartApiActions.addItemCartSuccess, (state, action): CartState => {
+  on(CartApiActions.changeQuantityItemCartSuccess, (state, action): CartState => {
     return {
       ...state,
       items: action.itemsCart,
       error: ''
     };
   }),
-  on(CartApiActions.addItemCartFailure, (state, action): CartState => {
+  on(CartApiActions.changeQuantityItemCartFailure, (state, action): CartState => {
     return {
       ...state,
       error: action.error
@@ -40,5 +40,18 @@ export const cartReducer = createReducer<CartState>(
       items: [],
       error: action.error
     }
+  }),
+  on(CartApiActions.removeItemCartSuccess, (state, action): CartState => {
+    return {
+      ...state,
+      items: action.itemsCart,
+      error: ''
+    };
+  }),
+  on(CartApiActions.removeItemCartFailure, (state, action): CartState => {
+    return {
+      ...state,
+      error: action.error,
+    };
   })
 );
