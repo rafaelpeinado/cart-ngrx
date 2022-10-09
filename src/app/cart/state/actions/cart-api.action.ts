@@ -30,3 +30,13 @@ export const removeItemCartFailure = createAction(
   '[Cart API] Remove Item Cart Fail',
   props<{ error: string }>()
 );
+
+export const cleanCartSuccess = createAction(
+  '[Cart API] Clean Cart Success',
+  props<{ itemsCart: ItemCart[] }>()
+);
+
+export const cleanCartFailure = createAction(
+  '[Cart API] Clean Cart Fail',
+  props<{ error: string }>()
+);

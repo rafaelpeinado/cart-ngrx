@@ -43,4 +43,14 @@ export class CartEffects {
       ))
     );
   });
+
+  cleanCart$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(CartPageActions.cleanCart),
+      mergeMap(() => this.cartService.cleanCart().pipe(
+        map((itemsCart) => CartApiActions.cleanCartSuccess({ itemsCart })),
+        catchError((error) => of(CartApiActions.cleanCartFailure({ error })))
+      ))
+    );
+  });
 }

@@ -48,6 +48,12 @@ export class CartService {
       );
   }
 
+  public cleanCart(): Observable<ItemCart[]> {
+    const itemsCart: ItemCart[] = [];
+    this.localStorageSetItem(itemsCart);
+    return of(itemsCart);
+  }
+
   private localStorageSetItem(itemsCart: ItemCart[]): void {
     localStorage.setItem(this.keyCart, JSON.stringify(itemsCart));
   }

@@ -48,4 +48,8 @@ export class CartComponent implements OnInit {
     this.store.dispatch(CartPageActions.removeItemCart({ productId }));
   }
 
+  public finalizePurchase(): void {
+    this.store.dispatch(CartPageActions.cleanCart());
+  }
+
 }

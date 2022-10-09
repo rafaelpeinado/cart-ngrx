@@ -24,3 +24,7 @@ export const increaseItemCart = createAction(
   '[Cart Page] Increase Item Cart',
   props<{ itemCart: ItemCart }>()
 )
+
+export const cleanCart = createAction(
+  '[Cart Page] Increase Item Cart'
+)
