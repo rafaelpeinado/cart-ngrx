@@ -26,10 +26,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.product$ = this.store.select(getCurrentProduct);
     this.quantityCurrentProduct$ = this.store.select(getQuantityInCartById);
-    this.store.select(getQuantityInCartById)
-      .subscribe((response) => {
-        console.log('teste', response);
-      });
+
     this.activatedRoute.params
       .subscribe(response => {
         if (response && response.id) {
