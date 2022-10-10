@@ -16,6 +16,7 @@ import { CartModule } from './cart/cart.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { environment } from '../environments/environment';
       name: 'APM Demo App DevTools',
       maxAge: 25,
       logOnly: environment.production
-    })
+    }),
+    SweetAlert2Module.forRoot({})
   ],
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }

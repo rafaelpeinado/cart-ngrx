@@ -49,7 +49,7 @@ export class CartComponent implements OnInit {
   }
 
   public finalizePurchase(): void {
-    this.store.dispatch(CartPageActions.cleanCart());
+
   }
 
 }

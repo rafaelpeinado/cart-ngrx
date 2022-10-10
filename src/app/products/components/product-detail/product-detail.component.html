@@ -12,7 +12,10 @@
           <input class="form-control quantity-input" type="number" pattern="^[0-9]+$" inputmode="numeric" min="1" value="1"/>
         </div> -->
         <div class="col-12 p-0" *ngIf="quantityCurrentProduct$ | async as quantityCurrentProduct">
-          <button class="add-to-cart-button" type="button" [disabled]="quantityCurrentProduct.quantity === product.quantity" (click)="addToCart(product)">Adicionar no carrinho</button>
+          <button class="add-to-cart-button" type="button"
+          [disabled]="quantityCurrentProduct.quantity === product.quantity"
+          (click)="addToCart(product)"
+          [swal]="['Ebaaa!', 'Produto adicionado com sucesso.', 'success']">Adicionar no carrinho</button>
         </div>
       </div>
     </div>

@@ -42,8 +42,9 @@
         </div>
         <div class="col-9 pt-3 pb-3 col-xl-2 centralized">
           <span class="title-items">Total </span>{{ item.product.price * item.quantity | currency }}</div>
-        <div class="col-3 pt-3 pb-3 col-xl-1 text-end text-xl-center centralized" (click)="removeItemCart(item.product.id)">
-          <div class="items-remove"><fa-icon [icon]="faTrash"></fa-icon></div>
+        <div class="col-3 pt-3 pb-3 col-xl-1 text-end text-xl-center centralized">
+          <div (click)="removeItemCart(item.product.id)" class="items-remove"
+          [swal]="['Poxa!', 'Produto removido com sucesso.', 'success']"><fa-icon [icon]="faTrash"></fa-icon></div>
         </div>
       </div>
       <div class="row pt-5 p-3">
@@ -60,7 +61,8 @@
         </div>
         <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-3 text-xl-end text-center">
           <div class="items-actions-cart text-xl-end text-center">
-            <button routerLink="/" class="btn add-to-cart-button w-100" (click)="finalizePurchase()"> Finalizar Compra </button>
+            <button routerLink="/" class="btn add-to-cart-button w-100" (click)="finalizePurchase()"
+            [swal]="['Obrigado!', 'Compra finalizada com sucesso.', 'success']"> Finalizar Compra </button>
           </div>
         </div>
       </div>

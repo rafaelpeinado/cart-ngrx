@@ -8,6 +8,7 @@ import { cartReducer } from './state/cart.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CartEffects } from './state/cart.effects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CartRoutingModule,
     FontAwesomeModule,
     StoreModule.forFeature('cart', cartReducer),
-    EffectsModule.forFeature([CartEffects])
+    EffectsModule.forFeature([CartEffects]),
+    SweetAlert2Module.forChild({})
   ]
 })
 export class CartModule { }

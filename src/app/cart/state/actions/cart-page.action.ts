@@ -26,5 +26,5 @@ export const increaseItemCart = createAction(
 )
 
 export const cleanCart = createAction(
-  '[Cart Page] Increase Item Cart'
+  '[Cart Page] Clean Cart'
 )
